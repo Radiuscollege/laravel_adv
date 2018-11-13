@@ -23,8 +23,8 @@ class CreateTodosTable extends Migration
 
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
-                ->references('users')
-                ->on('id');
+                ->references('id')
+                ->on('users');
 
             $table->timestamps();
         });
