@@ -18,7 +18,7 @@ class CreateTodosTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->dateTime('deadline');
-            $table->dateTime('completed_at');
+            $table->dateTime('completed_at')->nullable() ;
             $table->enum('priority', [1, 2, 3, 4, 5]);
 
             $table->unsignedInteger('user_id');
