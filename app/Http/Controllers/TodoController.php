@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        return \Auth::user()->todos;
     }
 
     /**
@@ -46,6 +50,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
+        abort_if(\Auth::id() !== $todo->user_id, 403);
         return $todo;
     }
 

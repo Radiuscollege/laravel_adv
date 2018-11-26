@@ -11,7 +11,15 @@
 |
 */
 
+Route::get('/', function() {
+    return 'homepage';
+});
+
 Route::resources([
    'users' => 'UserController',
    'todos' => 'TodoController'
 ]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
