@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
 use App\Todo;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return \Auth::user()->todos;
+        $todos = \Auth::user()->todos;
+        return view('todos/index')->with('todos', $todos);
     }
 
     /**
@@ -28,7 +29,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todos/create');
     }
 
     /**
@@ -39,7 +40,20 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validatie
+        // in database zetten
+        // redirecten naar todos.index
+        Validator::make($request->all(), [
+           'title'          => 'required|string|min:6',
+           'description'    => 'string',
+           'deadline'       => 'date',
+           'priority'       => 'required|between:1,5'
+        ])->validate();
+
+        $todo = new Todo();
+        // ???
+        $todo->save();
+
     }
 
     /**
