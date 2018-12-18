@@ -5,8 +5,11 @@
 
     @include('partials.notifications')
 
-    <form action="{{route('todos.store')}}" method="post">
+    <form action="{{route('todos.update', $todo->id)}}" method="post">
+
         @csrf
+        @method('PUT')
+
         <div class="form-group">
             <label for="title">Title</label>
             <br>

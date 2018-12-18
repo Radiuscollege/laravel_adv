@@ -17,7 +17,8 @@ Route::get('/', function() {
 
 Route::resources([
    'users' => 'UserController',
-   'todos' => 'TodoController'
+   'todos' => 'TodoController',
+   'lists' => 'ListController'
 ]);
 
 Auth::routes();

@@ -106,7 +106,21 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        dd( $request->all() );
+        $this->validate($request, [
+            'title'          => 'required|string|min:6',
+            'description'    => 'string',
+            'deadline'       => 'date',
+            'priority'       => 'required|between:1,5'
+        ]);
+
+        $todo->title        = $request->title;
+        $todo->description  = $request->description;
+        $todo->deadline     = $request->deadline;
+        $todo->priority     = $request->priority;
+        $todo->update();
+
+        return redirect( route('todos.show', $todo->id) )
+            ->with('success', 'Item updates succesfully');
     }
 
     /**
@@ -117,6 +131,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect( route('todos.index') )->with('success', 'Item succesfully deleted');
     }
 }

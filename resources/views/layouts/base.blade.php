@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://unpkg.com/nes.css@0.0.2/css/nes.min.css" rel="stylesheet" />
+
     <title>Trello Clone</title>
 </head>
 <body>
@@ -16,5 +17,8 @@
 
         <footer> copyright Radius College </footer>
     </div>
+
+
+    <script src="{{ asset('js/script.js')}}"></script>
 </body>
 </html>
