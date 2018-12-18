@@ -81,7 +81,7 @@ class TodoController extends Controller
     public function show(Todo $todo)
     {
         abort_if(\Auth::id() !== $todo->user_id, 403);
-        return $todo;
+        return view('todos.show')->with('todo', $todo);
     }
 
     /**
@@ -106,7 +106,7 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        dd( $request->all() );
     }
 
     /**

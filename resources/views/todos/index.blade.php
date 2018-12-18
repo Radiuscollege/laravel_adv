@@ -9,10 +9,12 @@
         <div class="messages">
             @foreach($todos as $item)
                 <div class="message -left">
-                    <i class="bcrikko" style="top: 50px"></i>
-                    <div class="balloon from-left">
-                        <p>{{ $item->title }}</p>
-                    </div>
+                    <a href="{{ route('todos.show', $item->id) }}">
+                        <i class="bcrikko" style="top: 50px"></i>
+                        <div class="balloon from-left">
+                            <p>{{ $item->title }}</p>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
