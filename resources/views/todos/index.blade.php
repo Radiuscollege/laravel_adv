@@ -3,6 +3,9 @@
 @section('content')
     <section class="balloon container with-title" style="padding: 45px">
         <h2 class="title">Todo items</h2>
+
+        @include('partials.notifications')
+
         <div class="messages">
             @foreach($todos as $item)
                 <div class="message -left">

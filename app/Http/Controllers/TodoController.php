@@ -18,7 +18,15 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = \Auth::user()->todos;
+        // standard query
+        // $todos = \Auth::user()->todos;
+
+        // if you want to make custom queries:
+        $todos = \Auth::user()->todos()
+            ->orderBy('id', 'DESC')
+            ->take(5)
+            ->get();
+
         return view('todos/index')->with('todos', $todos);
     }
 
@@ -51,8 +59,16 @@ class TodoController extends Controller
         ])->validate();
 
         $todo = new Todo();
-        // ???
+        $todo->user_id      = \Auth::id();
+        $todo->title        = $request->title;
+        $todo->description  = $request->description;
+        $todo->deadline     = $request->deadline;
+        $todo->priority     = $request->priority;
+
         $todo->save();
+        // wat nu?
+        return redirect( route('todos.index') )
+            ->with('success', 'Todo item created succesfully');
 
     }
 
@@ -76,7 +92,9 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        $todo->deadline = date_timestamp_get(new \DateTime($todo->deadline));
+        return view('todos.edit')
+            ->with('todo', $todo);
     }
 
     /**

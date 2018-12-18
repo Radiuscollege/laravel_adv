@@ -3,11 +3,8 @@
 @section('content')
     <h2>Create new Todo</h2>
 
-    <ul>
-    @foreach($errors->all() as $error)
-        <li class="input is-error">{{ $error }}</li>
-    @endforeach
-    </ul>
+    @include('partials.notifications')
+
     <form action="{{route('todos.store')}}" method="post">
         @csrf
         <div class="form-group">
